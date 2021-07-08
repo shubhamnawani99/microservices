@@ -1,0 +1,37 @@
+server:
+  port: 9999
+  
+spring:
+  application:
+    name: API-SERVICE
+
+  cloud:
+    gateway:
+      routes:
+      - id: ORDER-SERVICE
+        uri: lb://ORDER-SERVICE
+        predicates:
+        - Path=/order/**
+#        filters:
+#        - name: circuitBreaker
+#          args:
+#            name: ORDER-SERVICE
+#            fallbackuri: fowards:/orderServiceFallBack
+            
+      - id: PAYMENT-SERVICE
+        uri: lb://PAYMENT-SERVICE
+        predicates:
+        - Path=/payment/**
+#        filters:
+#        - name: circuitBreaker
+#          args:
+#            name: PAYMENT-SERVICE
+#            fallbackuri: fowards:/paymentServiceFallBack
+
+        
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/    

@@ -1,0 +1,31 @@
+payment:
+  url: http://PAYMENT-SERVICE/payment/makePayment
+  pricePerUnit: 99999.89
+  
+server:
+  port: 8001
+
+
+spring:
+  application:
+    name: ORDER-SERVICE
+    
+  jpa:
+    show-sql: true
+    
+  h2:
+    console:
+      enabled: true
+      
+     
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+    
+eureka:
+  client:
+    enabled: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+     
